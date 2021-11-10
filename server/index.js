@@ -4,6 +4,7 @@ const conn = require("./conn");
 const PORT = process.env.PORT || 3001;
 
 const app = express();
+app.use(express.json());
 
 app.get("/api", (req, res) => {
   res.json({ mensaje: "Hola, ORT!" });
@@ -11,13 +12,22 @@ app.get("/api", (req, res) => {
 
 app.get("/api/posts", async (req, res) => {
   const connection = await conn.getConnection();
-  console.log(connection);
-  const asd = await connection
+  const posts = await connection
                         .db("tp2c2021")
                         .collection("posts")
                         .find()
                         .toArray();
-  res.json(asd);
+  res.json(posts);
+});
+
+app.post("/api/users", async (req, res) => {
+  const connection = await conn.getConnection();
+  console.log(req.body)
+  const user = await connection
+                        .db("tp2c2021")
+                        .collection("users")
+                        .insertOne(req.body);
+  res.json(user);
 });
 
 
