@@ -24,20 +24,3 @@ app.get("/api/posts", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
-
-
-
-// Subir mensajes
-// Leer mensajes
-// Ver seguidores, ver seguidos.
-// Likes 
-// Ver likes 
-
-
-// Crear usuario, logearse, seguir usuario, ver a quien sigo.
-
-// Ver mensajes escritos, ver mensajes escritos por otras personas, dar likes y ver likes.
-
-// Nombre de integrantes, nombre de proyecto y las funcionalidades que abarca el proyecto.
-
-// Nice to have => Poder poner img en los mensajes. (De la manera que prefiramos)
