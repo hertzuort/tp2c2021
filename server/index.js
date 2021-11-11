@@ -1,11 +1,15 @@
 const express = require("express");
 const conn = require("./conn");
 const { ObjectId } = require('bson')
+const cors = require('cors');
 
 const PORT = process.env.PORT || 3001
 
 const app = express()
 app.use(express.json())
+app.use(cors({
+    origin: '*'
+}));
 
 app.get("/api", (req, res) => {
   res.json({ mensaje: "Hola, ORT!" })
