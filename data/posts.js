@@ -45,16 +45,15 @@ async function getPostsByUserId(usuarioId){
 
 async function postLike(postId, userId){
   const connection = await conn.getConnection()
-  const post = await getPostById(postId)
   const newValues = {
-    $set: {
-      likes: post.likes.push(userId)
+    $push: {
+      'likes': userId
     }
   }
   const result = await connection
   .db(DATABASE)
   .collection(POSTS)
-  .updateOne(post, newValues);
+  .updateOne({ _id: new ObjectId(postId) }, newValues);
 }
 
 module.exports = {getAllPosts,createPost,getPostById,getPostsByUserId,postLike}
