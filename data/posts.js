@@ -56,4 +56,15 @@ async function postLike(postId, userId){
   .updateOne({ _id: new ObjectId(postId) }, newValues);
 }
 
-module.exports = {getAllPosts,createPost,getPostById,getPostsByUserId,postLike}
+async function getLikesByPostId(postId){
+  const posts = await getAllPosts()
+  const likes = posts
+  .filter((post) => post._id == postId)
+  .map((post) => {
+      const likes = post.likes;
+      return likes
+  })       
+    return likes
+}
+
+module.exports = {getAllPosts,createPost,getPostById,getPostsByUserId,postLike,getLikesByPostId}

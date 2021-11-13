@@ -49,6 +49,10 @@ app.put("/api/posts/:postId/like/:userId", async (req, res) => {
   res.json(await postsController.postLike(req.params.postId, req.params.userId))
 })
 
+app.get("/api/posts/:postId/likes", async (req, res) => {
+  res.json(await postsController.getLikesByPostId(req.params.postId))
+})
+
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`)
