@@ -28,4 +28,10 @@ async function getCommnetsByPostId(postId){
     return posts.getCommnetsByPostId(postId)
 }
 
-module.exports = {getAllPosts,createPost,getPostById,getPostsByUserId,postLike,getLikesByPostId,getCommnetsByPostId}
+async function getTotalLikesByPostId(postId){
+    const likes = await getLikesByPostId(postId)
+    const totalLikes = likes[0].length
+    return totalLikes
+}
+
+module.exports = {getAllPosts,createPost,getPostById,getPostsByUserId,postLike,getLikesByPostId,getCommnetsByPostId,getTotalLikesByPostId}
