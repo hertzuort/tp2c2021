@@ -24,4 +24,8 @@ async function getLikesByPostId(postId){
     return posts.getLikesByPostId(postId)
 }
 
-module.exports = {getAllPosts,createPost,getPostById,getPostsByUserId,postLike,getLikesByPostId}
+async function getCommnetsByPostId(postId){
+    return posts.getCommnetsByPostId(postId)
+}
+
+module.exports = {getAllPosts,createPost,getPostById,getPostsByUserId,postLike,getLikesByPostId,getCommnetsByPostId}

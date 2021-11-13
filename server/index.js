@@ -53,6 +53,10 @@ app.get("/api/posts/:postId/likes", async (req, res) => {
   res.json(await postsController.getLikesByPostId(req.params.postId))
 })
 
+app.get("/api/posts/:postId/comments", async (req, res) => {
+  res.json(await postsController.getCommnetsByPostId(req.params.postId))
+})
+
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`)

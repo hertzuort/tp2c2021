@@ -67,4 +67,15 @@ async function getLikesByPostId(postId){
     return likes
 }
 
-module.exports = {getAllPosts,createPost,getPostById,getPostsByUserId,postLike,getLikesByPostId}
+async function getCommnetsByPostId(postId){
+  const posts = await getAllPosts()
+  const comments = posts
+  .filter((post) => post._id == postId)
+  .map((post) => {
+      const comments = post.respuestas;
+      return comments
+  })       
+    return comments
+}
+
+module.exports = {getAllPosts,createPost,getPostById,getPostsByUserId,postLike,getLikesByPostId,getCommnetsByPostId}
