@@ -1,4 +1,5 @@
 const postsController = require('../controllers/posts');
+const auth = require('../middlewares/auth')
 const express = require('express');
 const router = express.Router();
 
@@ -14,8 +15,8 @@ router.get("/:id", async (req, res) => {
     res.json(await postsController.getPostById(req.params.id))
 })
 
-router.put("/:postId/like/:userId", async (req, res) => {
-    res.json(await postsController.postLike(req.params.postId, req.params.userId))
+router.put("/:postId/like", auth, async (req, res) => {
+    res.json(await postsController.postLike(req.params.postId, req.decodedToken.userId))
 })
 
 router.get("/:postId/likes", async (req, res) => {
@@ -29,5 +30,6 @@ router.get("/:postId/comments", async (req, res) => {
 router.get("/:postId/likes/total", async (req, res) => {
     res.json(await postsController.getTotalLikesByPostId(req.params.postId))
 })
+
 
 module.exports = router;

@@ -1,5 +1,5 @@
 const { ObjectId } = require('bson')
-const conn = require('../server/conn');
+const conn = require('./conn');
 const DATABASE = 'tp2c2021';
 const POSTS = 'posts';
 
