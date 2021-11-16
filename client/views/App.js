@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 const SERVER_URL = "http://localhost:3001";
 
-export default function App() {
+export default function App({navigation}) {
 
   const [mensaje, setMensaje] = React.useState(null);
 
@@ -22,6 +22,7 @@ export default function App() {
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
       <Text>{!mensaje ? "Cargando mensaje del servidor..." : mensaje}</Text>
+      <Text onPress={()=> navigation.navigate("Posts")}>Press</Text>
       <StatusBar style="auto" />
     </View>
   );
