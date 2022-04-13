@@ -10,7 +10,7 @@ Pararse en la carpeta donde esta este archivo README y luego ejecutar:
 
 ```
 cd client
-npm start client
+npm start
 ```
 
 ### Extra
