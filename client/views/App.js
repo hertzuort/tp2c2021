@@ -8,6 +8,7 @@ export default function App({navigation}) {
 
   const [mensaje, setMensaje] = React.useState(null);
 
+  console.log(typeof navigation);
   React.useEffect(() => {
     fetch(`${SERVER_URL}/api`)
       .then(respuesta => respuesta.json())
@@ -22,7 +23,7 @@ export default function App({navigation}) {
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
       <Text>{!mensaje ? "Cargando mensaje del servidor..." : mensaje}</Text>
-      <Text onPress={()=> navigation.navigate("Posts")}>Press</Text>
+      <Text onPress={() => navigation.navigate("Posts")}>Press</Text>
       <StatusBar style="auto" />
     </View>
   );
