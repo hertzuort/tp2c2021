@@ -1,4 +1,5 @@
 const postsController = require('../controllers/posts');
+const postSchema = require('../schemas/posts');
 const auth = require('../middlewares/auth')
 const express = require('express');
 const router = express.Router();
@@ -8,7 +9,8 @@ router.get("/", async (req, res) => {
 })
 
 router.post("/", async (req, res) => {
-    res.json(await postsController.createPost(req.body))
+    const newPost = postSchema.validatePostEntry(req.body);
+    res.json(await postsController.createPost(newPost))
 })
 
 router.get("/:id", async (req, res) => {
