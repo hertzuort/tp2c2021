@@ -8,7 +8,6 @@ export default function App({navigation}) {
 
   const [mensaje, setMensaje] = React.useState(null);
 
-  console.log(typeof navigation);
   React.useEffect(() => {
     fetch(`${SERVER_URL}/api`)
       .then(respuesta => respuesta.json())
