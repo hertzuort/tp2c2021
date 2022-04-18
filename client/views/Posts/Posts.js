@@ -23,7 +23,7 @@ export default function Posts({navigation}) {
         <Container>
             <Header navigation={navigation} />
             <_ScrollView showsHorizontalScrollIndicator={false}>
-                {posts ? posts.map(it => <Post key={it._id} mensajes={it.mensajes}/>) : <Text>Cargando posts!</Text>}
+                {posts ? posts.map(post => <Post key={post._id} post={post}/>) : <Text>Cargando posts!</Text>}
             </_ScrollView>
         </Container>
     );

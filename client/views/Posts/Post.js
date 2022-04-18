@@ -2,11 +2,12 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import styled from 'styled-components/native';
 
-export const Post = ({mensajes}) => {
+export const Post = ({post}) => {
     return (
         <_View>
-            <Author>Pepe</Author>
-            <Message>{mensajes}</Message>
+            <Author>{post.autor.nombre + ' ' + post.autor.apellido}</Author>
+            <Message>{post.mensaje}</Message>
+            <Text>Likes: {post.likes}</Text>
         </_View>
     )
 }

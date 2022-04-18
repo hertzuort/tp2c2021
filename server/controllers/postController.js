@@ -5,7 +5,7 @@ async function getAllPosts() {
     const postList = await posts.getAllPosts();
     return postList.map(post => ({
         // Puede que esta transformacion aplique a varios endpoints, si es asi se puede llevar a una funcion para reutilizarla
-        _id: post.id,
+        _id: post._id,
         mensaje: post.mensaje,
         fecha: post.fecha,
         likes: post.likes ? post.likes.length : 0,
