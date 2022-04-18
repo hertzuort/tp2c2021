@@ -1,6 +1,7 @@
 const postsController = require('../controllers/posts');
-const postSchema = require('../schemas/posts');
-const auth = require('../middlewares/auth')
+const { postSchema } = require('../schemas/posts');
+const auth = require('../middlewares/auth');
+const validateSchema = require('../middlewares/validateSchema');
 const express = require('express');
 const router = express.Router();
 
@@ -8,9 +9,8 @@ router.get("/", async (req, res) => {
     res.json(await postsController.getAllPosts())
 })
 
-router.post("/", async (req, res) => {
-    const newPost = postSchema.validatePostEntry(req.body);
-    res.json(await postsController.createPost(newPost))
+router.post("/", auth, validateSchema(postSchema), async (req, res) => {
+    res.json(await postsController.createPost(req.body, req.decodedToken.userId))
 })
 
 router.get("/:id", async (req, res) => {

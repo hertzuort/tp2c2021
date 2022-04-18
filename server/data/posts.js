@@ -16,10 +16,11 @@ async function getAllPosts(){
 
 async function createPost(newPost){
   const connection = await conn.getConnection()
-  const post = await connection
+  const insertionResult = await connection
     .db(DATABASE)
     .collection(POSTS)
     .insertOne(newPost)
+  return insertionResult;
 }
 
 async function getPostById(id){

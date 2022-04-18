@@ -3,11 +3,11 @@ const respuestasSchema = require('../schemas/respuestas');
 
 
 const postSchema = Joi.object({
-    usuarioId: Joi.string().required(),
-    fecha: Joi.date().required(),
-    mensajes: Joi.string().required(),
-    likes: Joi.array().items(Joi.string().optional()),
-    respuestas: Joi.array().items(respuestasSchema.respuestas).optional()
+    //usuarioId: Joi.string().required(),
+    //fecha: Joi.date().required(),
+    mensaje: Joi.string().required(),
+    //likes: Joi.array().items(Joi.string().optional()),
+    //respuestas: Joi.array().items(respuestasSchema.respuestas).optional()
 })
 
   function validatePostEntry(postEntry) {
@@ -18,5 +18,5 @@ const postSchema = Joi.object({
     return result.value;
   }
   
-  module.exports = { validatePostEntry }
+  module.exports = { postSchema, validatePostEntry }
   

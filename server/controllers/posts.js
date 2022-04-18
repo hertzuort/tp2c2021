@@ -4,8 +4,13 @@ async function getAllPosts(){
     return posts.getAllPosts()
 }
 
-async function createPost(newPost){
-    return posts.createPost(newPost)
+async function createPost(newPost, userId){
+    newPost.usuarioId = userId;
+    newPost.fecha = new Date();
+    newPost.likes = [];
+    newPost.respuestas = [];
+    const insertionResult = await posts.createPost(newPost);
+    return posts.getPostById(insertionResult.insertedId);
 }
 
 async function getPostById(id){
