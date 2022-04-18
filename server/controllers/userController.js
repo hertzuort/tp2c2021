@@ -1,4 +1,4 @@
-const users = require('../data/users');
+const users = require('../data/userRepository');
 const jwt = require('jsonwebtoken');
 
 async function createUser(user) {

@@ -1,7 +1,7 @@
-const userController = require('../controllers/users');
-const postController = require('../controllers/posts');
+const userController = require('../controllers/userController');
+const postController = require('../controllers/postController');
 const router = require('express').Router();
-const userSchema = require('../schemas/users');
+const userSchema = require('../schemas/userSchema');
 
 router.post("/", async (req, res) => {
     const newUser = userSchema.validateUser(req.body);

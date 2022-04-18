@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const respuestasSchema = require('../schemas/respuestas');
+const respuestasSchema = require('./respuestaSchema');
 
 
 const postSchema = Joi.object({

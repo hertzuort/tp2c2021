@@ -1,4 +1,4 @@
-const posts = require('../data/posts');
+const posts = require('../data/postRepository');
 
 async function getAllPosts(){
     return posts.getAllPosts()

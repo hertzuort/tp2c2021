@@ -1,5 +1,5 @@
-const postsController = require('../controllers/posts');
-const { postSchema } = require('../schemas/posts');
+const postsController = require('../controllers/postController');
+const { postSchema } = require('../schemas/postSchema');
 const auth = require('../middlewares/auth');
 const validateSchema = require('../middlewares/validateSchema');
 const express = require('express');
