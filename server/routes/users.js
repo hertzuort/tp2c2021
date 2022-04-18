@@ -22,7 +22,7 @@ router.get("/:id/posts", async (req, res) => {
 
 router.post("/login", async (req, res, next) => {
     try {
-        res.json({token: await userController.generateAuthToken(req.body.mail, req.body.contraseña)})
+        res.json({accessToken: await userController.generateAuthToken(req.body.mail, req.body.contraseña)})
     } catch (error) {
         next(error);
     }
