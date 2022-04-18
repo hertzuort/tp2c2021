@@ -1,11 +1,25 @@
 const posts = require('../data/postRepository');
+const { ObjectId } = require('bson')
 
-async function getAllPosts(){
-    return posts.getAllPosts()
+async function getAllPosts() {
+    const postList = await posts.getAllPosts();
+    return postList.map(post => ({
+        // Puede que esta transformacion aplique a varios endpoints, si es asi se puede llevar a una funcion para reutilizarla
+        _id: post.id,
+        mensaje: post.mensaje,
+        fecha: post.fecha,
+        likes: post.likes ? post.likes.length : 0,
+        autor: {
+          _id: post.autor._id,
+          nombre: post.autor.nombre,
+          apellido: post.autor.apellido,
+          mail: post.autor.mail
+        }
+    }));
 }
 
 async function createPost(newPost, userId){
-    newPost.usuarioId = userId;
+    newPost.usuarioId = new ObjectId(userId);
     newPost.fecha = new Date();
     newPost.likes = [];
     newPost.respuestas = [];

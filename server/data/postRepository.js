@@ -3,15 +3,28 @@ const conn = require('./conn');
 const DATABASE = 'tp2c2021';
 const POSTS = 'posts';
 
+// Retorna todos los posts joineados con su autor de la coleccion de usuarios.
 async function getAllPosts(){
   const connection = await conn.getConnection()
   const posts = await connection
     .db(DATABASE)
     .collection(POSTS)
-    .find()
+    .aggregate([
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'usuarioId',
+          foreignField: '_id',
+          as: 'autor'
+        }
+      },
+      {
+        $unwind: '$autor'
+      }
+    ])
     .toArray();
 
-    return posts
+    return posts;
 }
 
 async function createPost(newPost){
