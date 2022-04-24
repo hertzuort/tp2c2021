@@ -42,19 +42,34 @@ async function getPostById(id){
     .db(DATABASE)
     .collection(POSTS)
     .findOne({ _id: new ObjectId(id) })
-
     return post
 }
 
-async function getPostsByUserId(usuarioId){
+async function getPostsByUserId(userId){
   const connection = await conn.getConnection()
   const posts = await connection
-    .db(DATABASE)
-    .collection(POSTS)
-    .find({ usuarioId: usuarioId })
-    .toArray()
-
-    return posts
+      .db(DATABASE)
+      .collection(POSTS)
+      .aggregate([
+          {
+              $lookup: {
+                  from: 'users',
+                  localField: 'usuarioId',
+                  foreignField: '_id',
+                  as: 'autor'
+              }
+          },
+          {
+              $unwind: '$autor'
+          },
+          {
+              $match: {
+                  'users._id': new ObjectId(userId)
+              }
+          }
+      ])
+      .toArray();
+    return posts;
 }
 
 async function postLike(postId, userId){

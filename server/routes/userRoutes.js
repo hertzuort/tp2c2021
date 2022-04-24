@@ -16,8 +16,8 @@ router.get("/:id", async (req, res) => {
     res.json(await userController.getUserById(req.params.id))
 })
 
-router.get("/:id/posts", async (req, res) => {
-    res.json(await postController.getPostsByUserId(req.params.id))
+router.get("/:postId/posts", async (req, res) => {
+    res.json(await postController.getPostsByUserId(req.params.postId))
 })
 
 router.post("/login", async (req, res, next) => {

@@ -3,19 +3,7 @@ const { ObjectId } = require('bson')
 
 async function getAllPosts() {
     const postList = await posts.getAllPosts();
-    return postList.map(post => ({
-        // Puede que esta transformacion aplique a varios endpoints, si es asi se puede llevar a una funcion para reutilizarla
-        _id: post._id,
-        mensaje: post.mensaje,
-        fecha: post.fecha,
-        likes: post.likes ? post.likes.length : 0,
-        autor: {
-          _id: post.autor._id,
-          nombre: post.autor.nombre,
-          apellido: post.autor.apellido,
-          mail: post.autor.mail
-        }
-    }));
+    return postList.map(post => parsePosts(post));
 }
 
 async function createPost(newPost, userId){
@@ -32,7 +20,8 @@ async function getPostById(id){
 }
 
 async function getPostsByUserId(userId){
-    return posts.getPostsByUserId(userId)
+    const userPosts =  await posts.getPostsByUserId(userId)
+    return userPosts.map(post => parsePosts(post));
 }
 
 async function postLike(postId, userId){
@@ -51,6 +40,21 @@ async function getTotalLikesByPostId(postId){
     const likes = await getLikesByPostId(postId)
     const totalLikes = likes[0].length
     return totalLikes
+}
+
+function parsePosts(post) {
+    return {
+        _id: post._id,
+        mensaje: post.mensaje,
+        fecha: post.fecha,
+        likes: post.likes ? post.likes.length : 0,
+        autor: {
+            _id: post.autor._id,
+            nombre: post.autor.nombre,
+            apellido: post.autor.apellido,
+            mail: post.autor.mail
+        }
+    };
 }
 
 module.exports = {getAllPosts,createPost,getPostById,getPostsByUserId,postLike,getLikesByPostId,getCommnetsByPostId,getTotalLikesByPostId}

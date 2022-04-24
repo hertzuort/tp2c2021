@@ -9,12 +9,11 @@ export default function Posts({navigation}) {
 
     const [posts, setPosts] = React.useState();
 
-    React.useEffect(() => {
+    React.useState(() => {
         fetch(`${SERVER_URL}/api/posts`)
             .then(respuesta => respuesta.json())
             .then(respuestaJson => setPosts(respuestaJson))
             .catch(error => {
-                //setMensaje("Hubo un error al obtener posts del servidor.");
                 console.error(error);
             });
     });
