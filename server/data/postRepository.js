@@ -64,7 +64,7 @@ async function getPostsByUserId(userId){
           },
           {
               $match: {
-                  'users._id': new ObjectId(userId)
+                  'autor._id': new ObjectId(userId)
               }
           }
       ])
