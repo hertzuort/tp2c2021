@@ -96,7 +96,7 @@ async function getLikesByPostId(postId){
     return likes
 }
 
-async function getCommnetsByPostId(postId){
+async function getCommentsByPostId(postId){
   const posts = await getAllPosts()
   const comments = posts
   .filter((post) => post._id == postId)
@@ -107,11 +107,11 @@ async function getCommnetsByPostId(postId){
     return comments
 }
 
-async function postCommentByPostId(postId, comment, userId){
+async function postCommentByPostId(postId, respuesta){
   const connection = await conn.getConnection()
   const newValues = {
     $push: {
-      'likes': userId
+      'respuestas': respuesta
     }
   }
   const result = await connection
@@ -120,4 +120,4 @@ async function postCommentByPostId(postId, comment, userId){
   .updateOne({ _id: new ObjectId(postId) }, newValues);
 }
 
-module.exports = {getAllPosts,createPost,getPostById,getPostsByUserId,postLike,getLikesByPostId,getCommnetsByPostId}
+module.exports = {getAllPosts,createPost,getPostById,getPostsByUserId,postLike,getLikesByPostId,getCommentsByPostId,postCommentByPostId}

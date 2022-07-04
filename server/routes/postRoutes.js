@@ -26,11 +26,11 @@ router.get("/:postId/likes", async (req, res) => {
 })
 
 router.get("/:postId/comments", async (req, res) => {
-    res.json(await postsController.getCommnetsByPostId(req.params.postId))
+    res.json(await postsController.getCommentsByPostId(req.params.postId))
 })
 
-router.post("/:postId/comments", async (req, res) => {
-    res.json(await postsController.postCommentByPostId(req.params.postId, req.body.comment, req.decodedToken.userId))
+router.post("/:postId/comments", auth, async (req, res) => {
+    res.json(await postsController.postCommentByPostId(req.params.postId, req.body.mensaje, req.decodedToken.userId))
 })
 
 router.get("/:postId/likes/total", async (req, res) => {
