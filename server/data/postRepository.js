@@ -107,4 +107,17 @@ async function getCommnetsByPostId(postId){
     return comments
 }
 
+async function postCommentByPostId(postId, comment, userId){
+  const connection = await conn.getConnection()
+  const newValues = {
+    $push: {
+      'likes': userId
+    }
+  }
+  const result = await connection
+  .db(DATABASE)
+  .collection(POSTS)
+  .updateOne({ _id: new ObjectId(postId) }, newValues);
+}
+
 module.exports = {getAllPosts,createPost,getPostById,getPostsByUserId,postLike,getLikesByPostId,getCommnetsByPostId}

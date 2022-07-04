@@ -32,8 +32,12 @@ async function getLikesByPostId(postId){
     return posts.getLikesByPostId(postId)
 }
 
-async function getCommnetsByPostId(postId){
+async function getCommentsByPostId(postId){
     return posts.getCommnetsByPostId(postId)
+}
+
+async function postCommentByPostId(postId, comment, userId){
+    return posts.postCommentByPostId(postId, comment, userId)
 }
 
 async function getTotalLikesByPostId(postId){
@@ -57,4 +61,4 @@ function parsePosts(post) {
     };
 }
 
-module.exports = {getAllPosts,createPost,getPostById,getPostsByUserId,postLike,getLikesByPostId,getCommnetsByPostId,getTotalLikesByPostId}
+module.exports = {getAllPosts,createPost,getPostById,getPostsByUserId,postLike,getLikesByPostId,getCommnetsByPostId: getCommentsByPostId,getTotalLikesByPostId, postCommentByPostId}

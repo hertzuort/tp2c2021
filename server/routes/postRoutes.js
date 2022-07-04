@@ -29,6 +29,10 @@ router.get("/:postId/comments", async (req, res) => {
     res.json(await postsController.getCommnetsByPostId(req.params.postId))
 })
 
+router.post("/:postId/comments", async (req, res) => {
+    res.json(await postsController.postCommentByPostId(req.params.postId, req.body.comment, req.decodedToken.userId))
+})
+
 router.get("/:postId/likes/total", async (req, res) => {
     res.json(await postsController.getTotalLikesByPostId(req.params.postId))
 })
