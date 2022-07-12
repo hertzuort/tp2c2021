@@ -4,6 +4,7 @@ import {Post} from "./Post";
 import styled from 'styled-components/native';
 import {Header} from "../Header";
 import PostCard from "../Components/PostCard";
+import {Loader} from "../Components/Loader/Loader";
 
 export default function Posts({navigation}) {
     const SERVER_URL = "http://localhost:3001";
@@ -24,7 +25,7 @@ export default function Posts({navigation}) {
             <Header navigation={navigation} />
             <Post/>
             <_ScrollView showsHorizontalScrollIndicator={false}>
-                {posts ? posts.map(post => <PostCard key={post._id} post={post}/>) : <Text>Cargando posts!</Text>}
+                {posts ? posts.map(post => <PostCard key={post._id} post={post}/>) : <Loader />}
             </_ScrollView>
         </Container>
     );

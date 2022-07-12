@@ -2,23 +2,27 @@ import { TextInput, Text, View, Pressable } from 'react-native';
 import styled from 'styled-components/native';
 import {useState} from "react/cjs/react.development";
 
-export const Post = (props) => {
+export const Post = () => {
     const SERVER_URL = "http://localhost:3001";
     const [text, setText] = useState('');
 
     async function onPress() {
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjU5YjU4NDhkZTZhNTc2NzBhZGI0NWIiLCJtYWlsIjoicGVwaXRvQGJvdGVsbGl0YS5jb20iLCJpYXQiOjE2NTc2NDIxOTgsImV4cCI6MTY1NzY0NTc5OH0.t5GCflTXlfFwD1RLv7r5SDKRhhlCoBYTrjhmFcYWD5Y";
-        const rawResponse = await fetch(`${SERVER_URL}/api/posts`, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({ mensaje: text })
-        });
-        const content = await rawResponse.json();
-        console.log(content);
+        if (text != '') {
+            const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjU5YjU4NDhkZTZhNTc2NzBhZGI0NWIiLCJtYWlsIjoicGVwaXRvQGJvdGVsbGl0YS5jb20iLCJpYXQiOjE2NTc2NDIxOTgsImV4cCI6MTY1NzY0NTc5OH0.t5GCflTXlfFwD1RLv7r5SDKRhhlCoBYTrjhmFcYWD5Y";
+            const rawResponse = await fetch(`${SERVER_URL}/api/posts`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ mensaje: text })
+            });
+            const content = await rawResponse.json();
+            console.log(content);
+        } else {
+            throw new Error("mensaje vacío");
+        }
     }
 
 
