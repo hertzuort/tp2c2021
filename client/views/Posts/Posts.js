@@ -9,7 +9,7 @@ import {Loader} from "../Components/Loader/Loader";
 export default function Posts({navigation}) {
     const SERVER_URL = "http://localhost:3001";
 
-    const [posts, setPosts] = React.useState([]);
+    const [posts, setPosts] = React.useState();
 
     React.useState(() => {
         fetch(`${SERVER_URL}/api/posts`)

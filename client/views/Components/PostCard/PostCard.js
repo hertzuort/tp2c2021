@@ -44,7 +44,7 @@ export default function PostCard(props) {
             <Footer onPress={async () => onPress()}>
                 {(likes[0] && likes[0].filter(like => like === info.id)[0]) ? <LikeIcon source={require('./red-like.png')}/> :
                     <LikeIcon source={require('./black-like.png')}/>}
-                <p>{props.post.likes}</p>
+                <p>{ likes[0] ? likes[0].length : 0}</p>
             </Footer>
         </Card>
     );
