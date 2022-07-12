@@ -20,7 +20,7 @@ export default function PostCard(props) {
     return (
         <Card>
             <Header>
-                <Img source={require('../Posts/profile.jpg')}/>
+                <Img source={'https://picsum.photos/150?random=11'}/>
                 <p>@{props.post.autor.nombre}</p>
             </Header>
             <Text>{props.post.mensaje}</Text>

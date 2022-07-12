@@ -6,7 +6,7 @@ export const Header = ({navigation}) => {
     return (
         <Container>
             <StyledPressable onPress={()=> navigation.navigate("Profile")}>
-                <ProfileImg source={require('./Posts/profile.jpg')} />
+                <ProfileImg source={'https://picsum.photos/150?random=11'} />
                 <Text>@user</Text>
             </StyledPressable>
         </Container>
