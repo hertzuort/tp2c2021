@@ -25,8 +25,6 @@ export const Post = () => {
         }
     }
 
-
-
     return (
         <_View>
             <Message

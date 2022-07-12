@@ -3,7 +3,7 @@ import {ScrollView, Text, View} from 'react-native';
 import {Post} from "./Post";
 import styled from 'styled-components/native';
 import {Header} from "../Header";
-import PostCard from "../Components/PostCard";
+import PostCard from "../Components/PostCard/PostCard";
 import {Loader} from "../Components/Loader/Loader";
 
 export default function Posts({navigation}) {
