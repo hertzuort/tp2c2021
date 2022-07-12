@@ -9,14 +9,9 @@ import {
 import { useState } from "react/cjs/react.development";
 
 export default function LoginScreen({ navigation }) {
-  function login() {
+  function register() {
     navigation.navigate('Posts');
   }
-
-  export default function LoginScreen({ navigation }) {
-    function register() {
-      navigation.navigate('Register');
-    }
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -41,11 +36,8 @@ export default function LoginScreen({ navigation }) {
           onChangeText={(text) => setPassword(text)}
         />
       </View>
-      <TouchableOpacity style={styles.loginBtn} onPress={() => login()}>
-        <Text style={styles.loginText}>Login</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.signBtn} onPress={() => register()}>
-        <Text style={styles.loginText}>Signup</Text>
+      <TouchableOpacity style={styles.loginBtn} onPress={() => register()}>
+        <Text style={styles.loginText}>Register</Text>
       </TouchableOpacity>
     </View>
   );
