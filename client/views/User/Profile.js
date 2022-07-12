@@ -1,8 +1,9 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Pressable} from 'react-native';
 import {Loader} from "../Components/Loader/Loader";
 import styled from 'styled-components/native';
 import {Header} from "../Header";
+import {PrimaryButton} from "../Components/PrimaryButton/PrimaryButton";
 
 export default function Profile({ navigation }) {
     const [info, setInfo] = React.useState();
@@ -36,6 +37,9 @@ export default function Profile({ navigation }) {
                     </Card> :
                     <Loader />
             }
+            <Pressable onPress={() => navigation.goBack()}>
+                <PrimaryButton text="Go back!"/>
+            </Pressable>
         </Container>
       );
 }
