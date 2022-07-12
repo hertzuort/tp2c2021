@@ -2,6 +2,8 @@ import { TextInput, View, Pressable } from 'react-native';
 import styled from 'styled-components/native';
 import {useState} from "react/cjs/react.development";
 import {PrimaryButton} from "../Components/PrimaryButton/PrimaryButton";
+import React from "react";
+import * as ReactDOM from "react-dom";
 
 export const Post = () => {
     const SERVER_URL = "http://localhost:3001";
@@ -11,7 +13,7 @@ export const Post = () => {
         if (text != '') {
             const token = localStorage.getItem('user-token');
             if (!token) return
-            const rawResponse = await fetch(`${SERVER_URL}/api/posts`, {
+            await fetch(`${SERVER_URL}/api/posts`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -20,12 +22,9 @@ export const Post = () => {
                 },
                 body: JSON.stringify({ mensaje: text })
             });
-            const content = await rawResponse.json();
-            console.log(content);
         } else {
             console.log("Mensaje vacío");
         }
-        setText("");
     }
 
     return (
@@ -33,7 +32,6 @@ export const Post = () => {
             <Message
                 placeholder="Que estas pensando?"
                 onChangeText={newText => setText(newText)}
-                defaultValue={text}
             />
             <StyledPressable onPress={async () => onPress()}>
                 <PrimaryButton text="Post!"/>
