@@ -8,12 +8,12 @@ export default function PostCard(props) {
     const [info, setInfo] = React.useState([]);
 
     React.useState(() => {
-      const session = localStorage.getItem('session');
-      setInfo(JSON.parse(session));
-  });
+        const session = localStorage.getItem('session');
+        setInfo(JSON.parse(session));
+    });
 
-    async function getPosts() {
-      React.useEffect(() => {
+
+    React.useEffect(() => {
         fetch(`${SERVER_URL}/api/posts/${props.post._id}/likes`)
             .then(response => response.json())
             .then(jsonResponse => setLikes(jsonResponse))
@@ -21,20 +21,18 @@ export default function PostCard(props) {
                 console.error(error);
             });
     }, [likes]);
-    }
+
 
     async function onPress() {
-          const token = localStorage.getItem('user-token');
-          if (!token) return
-          const rawResponse = await fetch(`${SERVER_URL}/api/posts/${props.post._id}/like`, {
-              method: 'PUT',
-              headers: {
-                  'Authorization': `Bearer ${token}`
-              },
-          });
-  }
-
-  getPosts()
+        const token = localStorage.getItem('user-token');
+        if (!token) return
+        await fetch(`${SERVER_URL}/api/posts/${props.post._id}/like`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+        });
+    }
 
     return (
         <Card>
@@ -43,8 +41,9 @@ export default function PostCard(props) {
                 <p>@{props.post.autor.nombre}</p>
             </Header>
             <Text>{props.post.mensaje}</Text>
-            <Footer onPress = {async () => onPress()}>
-                { (likes && likes.filter(like => like === info.id)) ? <LikeIcon source={require('./red-like.png')}/> : <LikeIcon source={require('./black-like.png')}/>}
+            <Footer onPress={async () => onPress()}>
+                {(likes[0] && likes[0].filter(like => like === info.id)[0]) ? <LikeIcon source={require('./red-like.png')}/> :
+                    <LikeIcon source={require('./black-like.png')}/>}
                 <p>{props.post.likes}</p>
             </Footer>
         </Card>
