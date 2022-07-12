@@ -1,33 +1,34 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import { TextInput, Text, View, Pressable } from 'react-native';
 import styled from 'styled-components/native';
 
-export const Post = ({post}) => {
+export const Post = () => {
     return (
         <_View>
-            <Author>{post.autor.nombre + ' ' + post.autor.apellido}</Author>
-            <Message>{post.mensaje}</Message>
-            <Text>Likes: {post.likes}</Text>
+            <Text>Qué estas pensando?</Text>
+            <Message/>
+            <StyledPressable>
+                <Text>Postear!</Text>
+            </StyledPressable>
         </_View>
     )
 }
 
 const _View = styled(View)`
-    width: 300px;
-    height: 125px;
-    border: 1px solid #4868dc;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  max-width: 600px;
+  background-color: #FFFFF5;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
 `;
 
-const Author = styled(Text)`
-    font-size: 15px;
-    font-weight: bold;
+const Message = styled(TextInput)`
+  border-width: 1px;
+  padding: 5px;
 `;
 
-const Message = styled(Text)`
-    font-size: 15px;
-    color: gray;
+const StyledPressable = styled(Pressable)`
+  width: 60px;
 `;

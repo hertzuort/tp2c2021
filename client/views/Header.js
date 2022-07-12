@@ -17,7 +17,7 @@ const Container = styled(View)`
   background-color: #faf8f0;
   position: absolute;
   width: 100%;
-  height: 10vh;
+  height: 7vh;
   padding: 10px;
   top: 0;
 `;

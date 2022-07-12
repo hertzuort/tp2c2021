@@ -3,6 +3,7 @@ import {ScrollView, Text, View} from 'react-native';
 import {Post} from "./Post";
 import styled from 'styled-components/native';
 import {Header} from "../Header";
+import PostCard from "../Components/PostCard";
 
 export default function Posts({navigation}) {
     const SERVER_URL = "http://localhost:3001";
@@ -21,8 +22,9 @@ export default function Posts({navigation}) {
     return (
         <Container>
             <Header navigation={navigation} />
+            <Post></Post>
             <_ScrollView showsHorizontalScrollIndicator={false}>
-                {posts ? posts.map(post => <Post key={post._id} post={post}/>) : <Text>Cargando posts!</Text>}
+                {posts ? posts.map(post => <PostCard key={post._id} post={post}/>) : <Text>Cargando posts!</Text>}
             </_ScrollView>
         </Container>
     );
@@ -36,5 +38,6 @@ const Container = styled(View)`
 `;
 
 const _ScrollView = styled(ScrollView)`
-  max-height: 70vh;
+  max-height: 65vh;
+  margin-top: 5px;
 `;

@@ -2,7 +2,7 @@ import React from 'react';
 import {ScrollView, Text, View} from "react-native";
 import styled from 'styled-components/native';
 import {Header} from "../Header";
-import {Post} from "../Posts/Post";
+import PostCard from "../Components/PostCard";
 
 export default function Profile({ navigation }) {
     const SERVER_URL = "http://localhost:3001";
@@ -10,7 +10,7 @@ export default function Profile({ navigation }) {
     const [posts, setPosts] = React.useState([]);
 
     React.useState(() => {
-        fetch(`${SERVER_URL}/api/users/61930ebf991ebc698ff2c7ee/posts`)
+        fetch(`${SERVER_URL}/api/users/6259b5848de6a57670adb45b/posts`)
             .then(respuesta => respuesta.json())
             .then(respuestaJson => setPosts(respuestaJson))
             .catch(error => {
@@ -24,7 +24,7 @@ export default function Profile({ navigation }) {
             <Text onPress={() => navigation.goBack()} >Go back</Text>
             <Header navigation={navigation} />
             <_ScrollView showsHorizontalScrollIndicator={false}>
-                {posts ? posts.map(post => <Post key={post._id} post={post}/>) : <Text>Cargando posts!</Text>}
+                {posts ? posts.map(post => <PostCard key={post._id} post={post}/>) : <Text>Cargando posts!</Text>}
             </_ScrollView>
         </Container>
     );
