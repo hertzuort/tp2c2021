@@ -8,47 +8,46 @@ import {
 } from "react-native";
 import { useState } from "react/cjs/react.development";
 
-export default function LoginScreen({ navigation }) {
-  function login() {
-    navigation.navigate('Posts');
-  }
-
   export default function LoginScreen({ navigation }) {
-    function register() {
-      navigation.navigate('Register');
+    function login() {
+      navigation.navigate('Posts');
     }
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+    function register() {
+      navigation.navigate('Signup');
+    }
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.logo}>ORTwit</Text>
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.inputText}
-          placeholder="Email"
-          placeholderTextColor="#c1e4f0"
-          onChangeText={(text) => setEmail(text)}
-        />
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    return (
+      <View style={styles.container}>
+        <Text style={styles.logo}>ORTwit</Text>
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.inputText}
+            placeholder="Email"
+            placeholderTextColor="#c1e4f0"
+            onChangeText={(text) => setEmail(text)}
+          />
+        </View>
+        <View style={styles.inputView}>
+          <TextInput
+            secureTextEntry
+            style={styles.inputText}
+            placeholder="Password"
+            placeholderTextColor="#c1e4f0"
+            onChangeText={(text) => setPassword(text)}
+          />
+        </View>
+        <TouchableOpacity style={styles.loginBtn} onPress={() => login()}>
+          <Text style={styles.loginText}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.signBtn} onPress={() => register()}>
+          <Text style={styles.loginText}>Signup</Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.inputView}>
-        <TextInput
-          secureTextEntry
-          style={styles.inputText}
-          placeholder="Password"
-          placeholderTextColor="#c1e4f0"
-          onChangeText={(text) => setPassword(text)}
-        />
-      </View>
-      <TouchableOpacity style={styles.loginBtn} onPress={() => login()}>
-        <Text style={styles.loginText}>Login</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.signBtn} onPress={() => register()}>
-        <Text style={styles.loginText}>Signup</Text>
-      </TouchableOpacity>
-    </View>
-  );
+    );
 }
 
 const styles = StyleSheet.create({

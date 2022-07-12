@@ -5,10 +5,10 @@ import styled from "styled-components/native";
 export const Header = ({navigation}) => {
     return (
         <Container>
-            <_Pressable onPress={()=> navigation.navigate("Profile")}>
+            <StyledPressable onPress={()=> navigation.navigate("Profile")}>
                 <ProfileImg source={require('./Posts/profile.jpg')} />
                 <Text>@user</Text>
-            </_Pressable>
+            </StyledPressable>
         </Container>
     );
 }
@@ -22,7 +22,7 @@ const Container = styled(View)`
   top: 0;
 `;
 
-const _Pressable = styled(Pressable)`
+const StyledPressable = styled(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: 10px;

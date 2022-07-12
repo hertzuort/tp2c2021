@@ -7,7 +7,7 @@ export const Post = () => {
             <Text>Qué estas pensando?</Text>
             <Message/>
             <StyledPressable>
-                <Text>Postear!</Text>
+                <Text numberOfLines={10}>Postear!</Text>
             </StyledPressable>
         </_View>
     )
@@ -18,7 +18,7 @@ const _View = styled(View)`
   flex-direction: column;
   min-width: 300px;
   max-width: 600px;
-  background-color: #FFFFF5;
+  background-color: #FFFFFF;
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 10px;
@@ -27,6 +27,8 @@ const _View = styled(View)`
 const Message = styled(TextInput)`
   border-width: 1px;
   padding: 5px;
+  height: 50px;
+  width: 100%;
 `;
 
 const StyledPressable = styled(Pressable)`

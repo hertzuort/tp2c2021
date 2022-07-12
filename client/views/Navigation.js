@@ -6,6 +6,7 @@ import HomeScreen from './App';
 import PostsScreen from './Posts/Posts';
 import ProfileScreen from './User/Profile.js';
 import LoginScreen from './User/Login.js';
+import SignupScreen from './User/Signup.js';
 
 
 const Stack = createNativeStackNavigator();
@@ -18,6 +19,7 @@ function App() {
                     headerShown: false
                 }}>
                 <Stack.Screen name="App" component={LoginScreen} />
+                <Stack.Screen name="Signup" component={SignupScreen} />
                 <Stack.Screen name="Posts" component={PostsScreen} />
                 <Stack.Screen name="Profile" component={ProfileScreen} />
             </Stack.Navigator>
