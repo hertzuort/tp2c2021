@@ -1,42 +1,69 @@
 import React from 'react';
-import {ScrollView, Text, View} from "react-native";
-import styled from 'styled-components/native';
-import {Header} from "../Header";
-import PostCard from "../Components/PostCard";
+import { View, Text, StyleSheet} from 'react-native';
 
 export default function Profile({ navigation }) {
-    const SERVER_URL = "http://localhost:3001";
-
-    const [posts, setPosts] = React.useState([]);
-
-    React.useState(() => {
-        fetch(`${SERVER_URL}/api/users/6259b5848de6a57670adb45b/posts`)
-            .then(respuesta => respuesta.json())
-            .then(respuestaJson => setPosts(respuestaJson))
-            .catch(error => {
-                console.error(error);
-            });
-    });
-
     return (
-        <Container>
-            <Text>Profile</Text>
-            <Text onPress={() => navigation.goBack()} >Go back</Text>
-            <Header navigation={navigation} />
-            <_ScrollView showsHorizontalScrollIndicator={false}>
-                {posts ? posts.map(post => <PostCard key={post._id} post={post}/>) : <Text>Cargando posts!</Text>}
-            </_ScrollView>
-        </Container>
-    );
-}
+      <View style={styles.container}>
+        <Text style={{ marginTop: 10, alignSelf: 'center', fontWeight: 'bold', fontSize: 20 }}>Perfil</Text>
+        <View style={{
+          marginHorizontal: 20,
+          marginTop: 20,
+          paddingVertical: 40,
+          shadowColor: 'gray',
+          shadowOpacity: 0.5,
+          shadowOffset: {
+              height: 3,
+              width: 3
+          },
+          shadowRadius: 4,
+          elevation: 4,
+          backgroundColor: 'white',
+          justifyContent: 'flex-start',
+          alignItems: 'center'
+        }}>
+          <View style={{ flexDirection: 'row', marginTop: 5 }}>
+              <Text style={styles.prefix}>Nombre:</Text>
+              <Text style={styles.content}></Text>
+          </View>
+          <View style={{ flexDirection: 'row', marginTop: 5 }}>
+              <Text style={styles.prefix}>Apellido:</Text>
+              <Text style={styles.content}></Text>
+          </View>
+          <View style={{ flexDirection: 'row', marginTop: 5 }}>
+              <Text style={styles.prefix}>Email:</Text>
+              <Text style={styles.content}></Text>
+          </View>
+          <View style={{ flexDirection: 'row', marginTop: 15 }} >
+      <Text onPress={() => navigation.goBack()} >Go back</Text>
+          </View>
+      </View>
+  </View>
+      );
+    }
 
-const Container = styled(View)`
-  flex: 1;
-  background-color: #3ea8fa;
-  align-items: center;
-  justify-content: center;
-`;
-
-const _ScrollView = styled(ScrollView)`
-  max-height: 70vh;
-`;
+    const styles = StyleSheet.create({
+        container: {
+          flex: 1,
+          padding: 24,
+          backgroundColor: "#eaeaea",
+        },
+        title: {
+          flex: 3,
+          marginTop: 16,
+          paddingVertical: 8,
+          borderWidth: 4,
+          borderColor: "#20232a",
+          borderRadius: 6,
+          backgroundColor: "#61dafb",
+          color: "#20232a",
+          textAlign: "center",
+          fontSize: 30,
+          fontWeight: "bold",
+        },
+        photo: {
+          flex: 2,
+          height: 200,
+          resizeMode: "center",
+          margin: 5,
+        },
+      });
