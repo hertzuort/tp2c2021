@@ -28,7 +28,7 @@ const SERVER_URL = "http://localhost:3001";
         body: JSON.stringify({ mail: email, contraseña: password })
       });
       const content = await rawResponse.json();
-      await sessionStorage.setItem('user-token', content.accessToken);
+      await localStorage.setItem('user-token', content.accessToken);
     }
 
     async function getUserData() {
@@ -40,9 +40,13 @@ const SERVER_URL = "http://localhost:3001";
         },
       });
       const content = await rawResponse.json();
-      await sessionStorage.setItem('user-email', email);
-      await sessionStorage.setItem('user-name', content.nombre);
-      await sessionStorage.setItem('user-lastName', content.apellido);
+      const session = {
+        'user-id': content._id,
+        'user-email': email,
+        'user-name': content.nombre,
+        'user-lastName': content.apellido
+      }
+      await localStorage.setItem('session', JSON.stringify(session));
     }
 
     const [email, setEmail] = useState("");
