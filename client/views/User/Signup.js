@@ -82,6 +82,9 @@ export default function LoginScreen({navigation}) {
             <TouchableOpacity style={styles.loginBtn} onPress={async () => register()}>
                 <Text style={styles.loginText}>Register</Text>
             </TouchableOpacity>
+            <TouchableOpacity style={styles.signBtn} onPress={() => navigation.navigate('App')}>
+                <Text style={styles.loginText}>Volver</Text>
+            </TouchableOpacity>
         </View>
     );
 }
