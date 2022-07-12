@@ -16,6 +16,10 @@ router.get("/:id", async (req, res) => {
     res.json(await userController.getUserById(req.params.id))
 })
 
+router.get("/:email/:password", async (req, res) => {
+    res.json(await userController.getUserByEmailAndPass(req.params.email, req.params.password))
+})
+
 router.get("/:id/posts", async (req, res) => {
     res.json(await postController.getPostsByUserId(req.params.id))
 })

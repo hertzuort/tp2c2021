@@ -13,10 +13,14 @@ async function getUserById(userId){
     return users.getUserById(userId)
 }
 
+async function getUserByEmailAndPass(email, password) {
+    return users.getByEmailAndPassword(email, password)
+}
+
 async function generateAuthToken(mail, contraseña) {
     const user = await users.getByEmailAndPassword(mail, contraseña);
     return jwt.sign({userId:user._id, mail: user.mail}, process.env.AUTH_SECRET, {expiresIn: '1h'});
 }
 
 
-module.exports = {createUser,getUsers,getUserById,generateAuthToken} 
+module.exports = {createUser, getUsers, getUserById, getUserByEmailAndPass, generateAuthToken}
