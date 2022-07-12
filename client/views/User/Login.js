@@ -41,10 +41,10 @@ const SERVER_URL = "http://localhost:3001";
       });
       const content = await rawResponse.json();
       const session = {
-        'user-id': content._id,
-        'user-email': email,
-        'user-name': content.nombre,
-        'user-lastName': content.apellido
+        'id': content._id,
+        'email': email,
+        'name': content.nombre,
+        'lastName': content.apellido
       }
       await localStorage.setItem('session', JSON.stringify(session));
     }
