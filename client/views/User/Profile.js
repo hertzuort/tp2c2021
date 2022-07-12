@@ -32,7 +32,7 @@ export default function Profile({ navigation }) {
 
 const Container = styled(View)`
   flex: 1;
-  background-color: #C1E4F0;
+  background-color: #3ea8fa;
   align-items: center;
   justify-content: center;
 `;

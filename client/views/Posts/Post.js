@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 export const Post = () => {
     return (
         <_View>
-            <Text>Qué estas pensando?</Text>
+            <_Text>Qué estas pensando?</_Text>
             <Message/>
             <StyledPressable>
                 <Text numberOfLines={10}>Postear!</Text>
@@ -33,4 +33,8 @@ const Message = styled(TextInput)`
 
 const StyledPressable = styled(Pressable)`
   width: 60px;
+`;
+
+const _Text = styled(Text)`
+  color: #696f79;
 `;

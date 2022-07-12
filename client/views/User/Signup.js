@@ -23,7 +23,7 @@ export default function LoginScreen({ navigation }) {
         <TextInput
           style={styles.inputText}
           placeholder="Email"
-          placeholderTextColor="#c1e4f0"
+          placeholderTextColor="black"
           onChangeText={(text) => setEmail(text)}
         />
       </View>
@@ -32,7 +32,7 @@ export default function LoginScreen({ navigation }) {
           secureTextEntry
           style={styles.inputText}
           placeholder="Password"
-          placeholderTextColor="#c1e4f0"
+          placeholderTextColor="black"
           onChangeText={(text) => setPassword(text)}
         />
       </View>
@@ -53,12 +53,12 @@ const styles = StyleSheet.create({
   logo: {
     fontWeight: "bold",
     fontSize: 50,
-    color: "#fb5b5a",
+    color: "#178bff",
     marginBottom: 40,
   },
   inputView: {
     width: "80%",
-    backgroundColor: "#465881",
+    backgroundColor: "#d0d7e8",
     borderRadius: 25,
     height: 50,
     marginBottom: 20,
@@ -67,12 +67,12 @@ const styles = StyleSheet.create({
   },
   inputText: {
     height: 50,
-    color: "white",
+    color: "black",
     borderColor: "transparent",
   },
   loginBtn: {
     width: "80%",
-    backgroundColor: "#fb5b5a",
+    backgroundColor: "#178bff",
     borderRadius: 25,
     height: 50,
     alignItems: "center",
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   },
   signBtn: {
     width: "80%",
-    backgroundColor: "#fb5b5a",
+    backgroundColor: "#178bff",
     borderRadius: 25,
     height: 50,
     alignItems: "center",

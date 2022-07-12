@@ -14,7 +14,7 @@ export const Header = ({navigation}) => {
 }
 
 const Container = styled(View)`
-  background-color: #faf8f0;
+  background-color: #FFFFFF;
   position: absolute;
   width: 100%;
   height: 7vh;
@@ -26,11 +26,12 @@ const StyledPressable = styled(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: 10px;
+  width: 100px;
 `;
 
 const ProfileImg = styled(Image)`
   width: 50px;
   height: 50px;
   border-radius: 25px;
-  border: 1px solid #353739;
+  border: 1px solid #178bff;
 `;
