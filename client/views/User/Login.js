@@ -6,16 +6,11 @@ import {
   StyleSheet,
   TextInput,
 } from "react-native";
-import Constants from "../../lib/Constants.js";
 import { useState } from "react/cjs/react.development";
-
-// LOGIN CON GOOGLE
-// import * as Google from "expo-auth-session/providers/google";
-// import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 export default function LoginScreen({ navigation }) {
   function login() {
-    navigation.navigate(Constants.MAIN_VIEW);
+    navigation.navigate('Posts');
   }
 
   const [email, setEmail] = useState("");
@@ -47,16 +42,6 @@ export default function LoginScreen({ navigation }) {
       <TouchableOpacity style={styles.signBtn} onPress={() => login()}>
         <Text style={styles.loginText}>SIGNUP</Text>
       </TouchableOpacity>
-
-      {/*LOGIN CON GOOGLE*/}
-      {/* <TouchableOpacity
-        disabled={!request}
-        onPress={() => {
-          promptAsync().then(() => login());
-        }}
-      >
-        <MaterialCommunityIcons name="google" color={"#DB4437"} size={26} />
-      </TouchableOpacity> */}
     </View>
   );
 }

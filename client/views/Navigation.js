@@ -5,6 +5,7 @@ import * as Expo from "expo";
 import HomeScreen from './App';
 import PostsScreen from './Posts/Posts';
 import ProfileScreen from './User/Profile.js';
+import LoginScreen from './User/Login.js';
 
 
 const Stack = createNativeStackNavigator();
@@ -16,7 +17,7 @@ function App() {
                 screenOptions={{
                     headerShown: false
                 }}>
-                <Stack.Screen name="App" component={HomeScreen} />
+                <Stack.Screen name="App" component={LoginScreen} />
                 <Stack.Screen name="Posts" component={PostsScreen} />
                 <Stack.Screen name="Profile" component={ProfileScreen} />
             </Stack.Navigator>
