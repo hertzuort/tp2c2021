@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {View, Image, Text} from 'react-native';
+import {View, Image, Text, Pressable} from 'react-native';
 
 export default function PostCard(props) {
     const SERVER_URL = 'http://localhost:3001';
     const [likes, setLikes] = React.useState([]);
 
-    React.useEffect(() => {
+    async function getPosts() {
+      React.useEffect(() => {
         fetch(`${SERVER_URL}/api/posts/${props.post._id}/likes`)
             .then(response => response.json())
             .then(jsonResponse => setLikes(jsonResponse))
@@ -14,6 +15,20 @@ export default function PostCard(props) {
                 console.error(error);
             });
     }, [likes]);
+    }
+
+    async function onPress() {
+          const token = localStorage.getItem('user-token');
+          if (!token) return
+          const rawResponse = await fetch(`${SERVER_URL}/api/posts/${props.post._id}/like`, {
+              method: 'PUT',
+              headers: {
+                  'Authorization': `Bearer ${token}`
+              },
+          });
+  }
+
+  getPosts()
 
     return (
         <Card>
@@ -22,7 +37,7 @@ export default function PostCard(props) {
                 <p>@{props.post.autor.nombre}</p>
             </Header>
             <Text>{props.post.mensaje}</Text>
-            <Footer>
+            <Footer onPress = {async () => onPress()}>
                 { (likes && likes.filter(like => like === props.post.autor._id)) ? <LikeIcon source={require('./black-like.png')}/> : <LikeIcon source={require('./red-like.png')}/> }
                 <p>{props.post.likes}</p>
             </Footer>
@@ -56,7 +71,7 @@ const Img = styled(Image)`
   height: 25px;
 `;
 
-const Footer = styled(View)`
+const Footer = styled(Pressable)`
   display: flex;
   flex-direction: row;
   gap: 5px;

@@ -3,11 +3,18 @@ import { Image, Pressable, Text, View } from "react-native";
 import styled from "styled-components/native";
 
 export const Header = ({navigation}) => {
+  const [info, setInfo] = React.useState([]);
+
+  React.useState(() => {
+    const session = localStorage.getItem('session');
+    setInfo(JSON.parse(session));
+});
+
     return (
         <Container>
             <StyledPressable onPress={()=> navigation.navigate("Profile")}>
                 <ProfileImg source={'https://picsum.photos/150?random=11'} />
-                <Text>{sessionStorage.getItem('user-name')}</Text>
+                <Text>{info.name}</Text>
             </StyledPressable>
             <StyledPressableLogout onPress={()=> navigation.navigate("App")}>
                 <Text>Logout</Text>
