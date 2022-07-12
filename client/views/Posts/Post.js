@@ -25,6 +25,7 @@ export const Post = () => {
         } else {
             console.log("Mensaje vacío");
         }
+        setText("");
     }
 
     return (
@@ -32,6 +33,7 @@ export const Post = () => {
             <Message
                 placeholder="Que estas pensando?"
                 onChangeText={newText => setText(newText)}
+                value={text}
             />
             <StyledPressable onPress={async () => onPress()}>
                 <PrimaryButton text="Post!"/>
