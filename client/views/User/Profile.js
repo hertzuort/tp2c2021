@@ -64,6 +64,7 @@ const Card = styled(View)`
 `;
 
 const Title = styled(Text)`
+  color: #178bff;
   align-self: center;
   font-size: 30px;
   font-weight: bold;

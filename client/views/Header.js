@@ -10,13 +10,18 @@ export const Header = ({navigation}) => {
     setInfo(JSON.parse(session));
 });
 
+  function logout() {
+      navigation.navigate("App");
+      localStorage.clear();
+  }
+
     return (
         <Container>
             <StyledPressable onPress={()=> navigation.navigate("Profile")}>
                 <ProfileImg source={'https://picsum.photos/150?random=11'} />
                 <Text>{info.name}</Text>
             </StyledPressable>
-            <StyledPressableLogout onPress={()=> navigation.navigate("App")}>
+            <StyledPressableLogout onPress={()=> logout()}>
                 <Text>Logout</Text>
             </StyledPressableLogout>
         </Container>

@@ -15,9 +15,14 @@ export default function LoginScreen({navigation}) {
     const [name, setName] = useState("");
     const [lastName, setLastName] = useState("");
 
+    function validateSignup() {
+        if (email === '' || password === '' || name === '' || lastName === '') throw new Error('Debe ingresar sus datos de signup');
+    }
+
     async function register() {
         try {
-            const rawResponse = await fetch(`${SERVER_URL}/api/users`, {
+            validateSignup();
+            await fetch(`${SERVER_URL}/api/users`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

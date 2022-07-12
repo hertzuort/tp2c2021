@@ -10,13 +10,8 @@ import { useState } from "react/cjs/react.development";
 const SERVER_URL = "http://localhost:3001";
 
   export default function LoginScreen({ navigation }) {
-    function login() {
-      navigation.navigate('Posts');
-    }
-
-    function register() {
-      navigation.navigate('Signup');
-    }
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
      async function loginUser() {
       const rawResponse = await fetch(`${SERVER_URL}/api/users/login`, {
@@ -49,15 +44,17 @@ const SERVER_URL = "http://localhost:3001";
       await localStorage.setItem('session', JSON.stringify(session));
     }
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    async function fetchData() {
+      localStorage.clear();
+      await loginUser();
+      await getUserData();
+    }
 
     async function onPress() {
       try {
         validateLogin();
-        loginUser()
-        getUserData()
-        login();
+        await fetchData();
+        navigation.navigate('Posts');
       } catch (e) {
         console.log(e.message)
       }
@@ -90,7 +87,7 @@ const SERVER_URL = "http://localhost:3001";
         <TouchableOpacity style={styles.loginBtn}  onPress={async () => onPress()}>
           <Text style={styles.loginText}>Login</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.signBtn} onPress={() => register()}>
+        <TouchableOpacity style={styles.signBtn} onPress={() => navigation.navigate('Signup')}>
           <Text style={styles.loginText}>Signup</Text>
         </TouchableOpacity>
       </View>
