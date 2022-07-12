@@ -22,16 +22,21 @@ const SERVER_URL = "http://localhost:3001";
     const [password, setPassword] = useState("");
 
     async function onPress() {
-      const rawResponse = await fetch(`${SERVER_URL}/api/users`, {
+      try {
+        const rawResponse = await fetch(`${SERVER_URL}/api/users/login`, {
           method: 'POST',
           headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({ mail: email, contraseña: password })
-      });
+        });
         const content = await rawResponse.json();
-        console.log(content);
+        await sessionStorage.setItem('user-token', content.accessToken);
+        login();
+      } catch (e) {
+        throw new Error(e.message);
+      }
     }
 
     return (
