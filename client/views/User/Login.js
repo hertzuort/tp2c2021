@@ -7,6 +7,7 @@ import {
   TextInput,
 } from "react-native";
 import { useState } from "react/cjs/react.development";
+const SERVER_URL = "http://localhost:3001";
 
   export default function LoginScreen({ navigation }) {
     function login() {
@@ -19,6 +20,19 @@ import { useState } from "react/cjs/react.development";
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    async function onPress() {
+      const rawResponse = await fetch(`${SERVER_URL}/api/users`, {
+          method: 'POST',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ mail: email, contraseña: password })
+      });
+        const content = await rawResponse.json();
+        console.log(content);
+    }
 
     return (
       <View style={styles.container}>
@@ -40,7 +54,7 @@ import { useState } from "react/cjs/react.development";
             onChangeText={(text) => setPassword(text)}
           />
         </View>
-        <TouchableOpacity style={styles.loginBtn} onPress={() => login()}>
+        <TouchableOpacity style={styles.loginBtn}  onPress={async () => onPress()}>
           <Text style={styles.loginText}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.signBtn} onPress={() => register()}>
