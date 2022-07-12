@@ -23,6 +23,7 @@ const SERVER_URL = "http://localhost:3001";
 
     async function onPress() {
       try {
+        validateLogin();
         const rawResponse = await fetch(`${SERVER_URL}/api/users/login`, {
           method: 'POST',
           headers: {
@@ -35,8 +36,12 @@ const SERVER_URL = "http://localhost:3001";
         await sessionStorage.setItem('user-token', content.accessToken);
         login();
       } catch (e) {
-        throw new Error(e.message);
+        console.log(e.message)
       }
+    }
+
+    function validateLogin() {
+      if (email == '' || password == '') throw new Error('Debe ingresar sus datos de login');
     }
 
     return (

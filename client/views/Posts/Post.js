@@ -1,6 +1,7 @@
-import { TextInput, Text, View, Pressable } from 'react-native';
+import { TextInput, View, Pressable } from 'react-native';
 import styled from 'styled-components/native';
 import {useState} from "react/cjs/react.development";
+import {PrimaryButton} from "../Components/PrimaryButton/PrimaryButton";
 
 export const Post = () => {
     const SERVER_URL = "http://localhost:3001";
@@ -8,7 +9,8 @@ export const Post = () => {
 
     async function onPress() {
         if (text != '') {
-            const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjU5YjU4NDhkZTZhNTc2NzBhZGI0NWIiLCJtYWlsIjoicGVwaXRvQGJvdGVsbGl0YS5jb20iLCJpYXQiOjE2NTc2NDcyODcsImV4cCI6MTY1NzY1MDg4N30.i4Ta0PG687UYv7NrNiCXQM7zA5FHDzB-NBZ1aXSSnto";
+            const token = localStorage.getItem('user-token');
+            if (!token) return
             const rawResponse = await fetch(`${SERVER_URL}/api/posts`, {
                 method: 'POST',
                 headers: {
@@ -21,7 +23,7 @@ export const Post = () => {
             const content = await rawResponse.json();
             console.log(content);
         } else {
-            throw new Error("mensaje vacío");
+            console.log("Mensaje vacío");
         }
     }
 
@@ -33,7 +35,7 @@ export const Post = () => {
                 defaultValue={text}
             />
             <StyledPressable onPress={async () => onPress()}>
-                <Text>Postear!</Text>
+                <PrimaryButton text="Post!"/>
             </StyledPressable>
         </_View>
     )
@@ -59,8 +61,4 @@ const Message = styled(TextInput)`
 
 const StyledPressable = styled(Pressable)`
   width: 60px;
-`;
-
-const _Text = styled(Text)`
-  color: #696f79;
 `;
