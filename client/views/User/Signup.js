@@ -9,16 +9,44 @@ import {
 import { useState } from "react/cjs/react.development";
 
 export default function LoginScreen({ navigation }) {
-  function register() {
+  const SERVER_URL = "http://localhost:3001";
+
+  async function register() {
+    const rawResponse = await fetch(`${SERVER_URL}/api/users`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ mail: email, contraseña: password, fechaDeNacimiento: Date.now(), fechaDeRegistro: Date.now(), nombre: name, apellido: lastName })
+    });
     navigation.navigate('Posts');
   }
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  
   return (
     <View style={styles.container}>
       <Text style={styles.logo}>ORTwit</Text>
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.inputText}
+          placeholder="Nombre"
+          placeholderTextColor="black"
+          onChangeText={(text) => setName(text)}
+        />
+      </View>
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.inputText}
+          placeholder="Apellido"
+          placeholderTextColor="black"
+          onChangeText={(text) => setLastName(text)}
+        />
+      </View>
       <View style={styles.inputView}>
         <TextInput
           style={styles.inputText}
