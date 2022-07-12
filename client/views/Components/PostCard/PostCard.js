@@ -5,6 +5,12 @@ import {View, Image, Text, Pressable} from 'react-native';
 export default function PostCard(props) {
     const SERVER_URL = 'http://localhost:3001';
     const [likes, setLikes] = React.useState([]);
+    const [info, setInfo] = React.useState([]);
+
+    React.useState(() => {
+      const session = localStorage.getItem('session');
+      setInfo(JSON.parse(session));
+  });
 
     async function getPosts() {
       React.useEffect(() => {
@@ -38,7 +44,7 @@ export default function PostCard(props) {
             </Header>
             <Text>{props.post.mensaje}</Text>
             <Footer onPress = {async () => onPress()}>
-                { (likes && likes.filter(like => like === props.post.autor._id)) ? <LikeIcon source={require('./black-like.png')}/> : <LikeIcon source={require('./red-like.png')}/> }
+                { (likes && likes.filter(like => like === info.id)) ? <LikeIcon source={require('./red-like.png')}/> : <LikeIcon source={require('./black-like.png')}/>}
                 <p>{props.post.likes}</p>
             </Footer>
         </Card>
