@@ -3,9 +3,7 @@ import styled from 'styled-components/native';
 import {View, Image, Text} from 'react-native';
 
 export default function PostCard(props) {
-
     const SERVER_URL = 'http://localhost:3001';
-
     const [likes, setLikes] = React.useState([]);
 
     React.useEffect(() => {
@@ -53,6 +51,7 @@ const Header = styled(View)`
 `;
 
 const Img = styled(Image)`
+  border-radius: 5px;
   width: 25px;
   height: 25px;
 `;

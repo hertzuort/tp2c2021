@@ -8,7 +8,7 @@ export const Post = () => {
 
     async function onPress() {
         if (text != '') {
-            const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjU5YjU4NDhkZTZhNTc2NzBhZGI0NWIiLCJtYWlsIjoicGVwaXRvQGJvdGVsbGl0YS5jb20iLCJpYXQiOjE2NTc2NDIxOTgsImV4cCI6MTY1NzY0NTc5OH0.t5GCflTXlfFwD1RLv7r5SDKRhhlCoBYTrjhmFcYWD5Y";
+            const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjU5YjU4NDhkZTZhNTc2NzBhZGI0NWIiLCJtYWlsIjoicGVwaXRvQGJvdGVsbGl0YS5jb20iLCJpYXQiOjE2NTc2NDcyODcsImV4cCI6MTY1NzY1MDg4N30.i4Ta0PG687UYv7NrNiCXQM7zA5FHDzB-NBZ1aXSSnto";
             const rawResponse = await fetch(`${SERVER_URL}/api/posts`, {
                 method: 'POST',
                 headers: {
