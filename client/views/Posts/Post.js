@@ -25,6 +25,7 @@ export const Post = () => {
         } else {
             console.log("Mensaje vacío");
         }
+        setText("");
     }
 
     return (
