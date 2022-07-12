@@ -7,7 +7,7 @@ export const Header = ({navigation}) => {
         <Container>
             <StyledPressable onPress={()=> navigation.navigate("Profile")}>
                 <ProfileImg source={'https://picsum.photos/150?random=11'} />
-                <Text>@user</Text>
+                <Text>{sessionStorage.getItem('user-name')}</Text>
             </StyledPressable>
             <StyledPressableLogout onPress={()=> navigation.navigate("App")}>
                 <Text>Logout</Text>

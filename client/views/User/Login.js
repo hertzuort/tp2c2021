@@ -18,22 +18,41 @@ const SERVER_URL = "http://localhost:3001";
       navigation.navigate('Signup');
     }
 
+     async function loginUser() {
+      const rawResponse = await fetch(`${SERVER_URL}/api/users/login`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ mail: email, contraseña: password })
+      });
+      const content = await rawResponse.json();
+      await sessionStorage.setItem('user-token', content.accessToken);
+    }
+
+    async function getUserData() {
+      const rawResponse = await fetch(`${SERVER_URL}/api/users/${email}/${password}`, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+      });
+      const content = await rawResponse.json();
+      await sessionStorage.setItem('user-email', email);
+      await sessionStorage.setItem('user-name', content.nombre);
+      await sessionStorage.setItem('user-lastName', content.apellido);
+    }
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     async function onPress() {
       try {
         validateLogin();
-        const rawResponse = await fetch(`${SERVER_URL}/api/users/login`, {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ mail: email, contraseña: password })
-        });
-        const content = await rawResponse.json();
-        await sessionStorage.setItem('user-token', content.accessToken);
+        loginUser()
+        getUserData()
         login();
       } catch (e) {
         console.log(e.message)
