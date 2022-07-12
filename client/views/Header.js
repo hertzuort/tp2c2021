@@ -9,6 +9,9 @@ export const Header = ({navigation}) => {
                 <ProfileImg source={'https://picsum.photos/150?random=11'} />
                 <Text>@user</Text>
             </StyledPressable>
+            <StyledPressableLogout onPress={()=> navigation.navigate("App")}>
+                <Text>Logout</Text>
+            </StyledPressableLogout>
         </Container>
     );
 }
@@ -25,6 +28,13 @@ const Container = styled(View)`
 const StyledPressable = styled(Pressable)`
   flex-direction: row;
   align-items: center;
+  gap: 10px;
+  width: 100px;
+`;
+
+const StyledPressableLogout = styled(Pressable)`
+  flex-direction: row;
+  align-items: right;
   gap: 10px;
   width: 100px;
 `;

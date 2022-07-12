@@ -2,7 +2,6 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import * as Expo from "expo";
-import HomeScreen from './App';
 import PostsScreen from './Posts/Posts';
 import ProfileScreen from './User/Profile.js';
 import LoginScreen from './User/Login.js';
