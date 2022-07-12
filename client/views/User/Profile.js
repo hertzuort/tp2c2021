@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Loader} from "../Components/Loader/Loader";
+import styled from 'styled-components/native';
 
 export default function Profile({ navigation }) {
     const SERVER_URL = "http://localhost:3001";
@@ -17,73 +18,71 @@ export default function Profile({ navigation }) {
     }, [info]);
 
     return (
-        <>
-            {
-                info ?
-                    <View style={styles.container}>
-                        <Text style={{ marginTop: 10, alignSelf: 'center', fontWeight: 'bold', fontSize: 20 }}>Perfil</Text>
-                        <View style={{
-                            marginHorizontal: 20,
-                            marginTop: 20,
-                            paddingVertical: 40,
-                            shadowColor: 'gray',
-                            shadowOpacity: 0.5,
-                            shadowOffset: {
-                                height: 3,
-                                width: 3
-                            },
-                            shadowRadius: 4,
-                            elevation: 4,
-                            backgroundColor: 'white',
-                            justifyContent: 'flex-start',
-                            alignItems: 'center'
-                        }}>
-                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                <Text style={styles.prefix}>Nombre: {info.nombre}</Text>
-                                <Text style={styles.content}></Text>
-                            </View>
-                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                <Text style={styles.prefix}>Apellido: {info.apellido}</Text>
-                                <Text style={styles.content}></Text>
-                            </View>
-                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                <Text style={styles.prefix}>Email: {info.mail}</Text>
-                                <Text style={styles.content}></Text>
-                            </View>
-                            <View style={{ flexDirection: 'row', marginTop: 15 }} >
-                                <Text onPress={() => navigation.goBack()} >Go back</Text>
-                            </View>
-                        </View>
-                    </View> :
-                    <Loader />
-            }
-        </>
+        <Container>
+            <Card>
+                <Title>Perfil</Title>
+                <Info>
+                    <Row>
+                        <Key>Nombre: </Key>
+                        <Value>nombre </Value>
+                    </Row>
+                    <Row>
+                        <Key>Apellido: </Key>
+                        <Value>apellido </Value>
+                    </Row>
+                    <Row>
+                        <Key>Email: </Key>
+                        <Value>email </Value>
+                    </Row>
+                </Info>
+            </Card>
+        </Container>
       );
-    }
+}
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      padding: 24,
-      backgroundColor: "#eaeaea",
-    },
-    title: {
-      flex: 3,
-      marginTop: 16,
-      paddingVertical: 8,
-      borderWidth: 4,
-      borderColor: "#20232a",
-      borderRadius: 6,
-      backgroundColor: "#61dafb",
-      color: "#20232a",
-      textAlign: "center",
-      fontSize: 30,
-      fontWeight: "bold",
-    },
-    photo: {
-      flex: 2,
-      height: 200,
-      resizeMode: "center",
-      margin: 5,
-    },
-});
+const Container = styled(View)`
+  flex: 1;
+  background-color: #3ea8fa;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Card = styled(View)`
+  display: flex;
+  gap: 25px;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 70vw;
+  height: 60vh;
+`;
+
+const Title = styled(Text)`
+  align-self: center;
+  font-size: 30px;
+  font-weight: bold;
+`;
+
+const Info = styled(View)`
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 15px;
+`;
+
+const Row = styled(View)`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Key = styled(Text)`
+    font-weight: bold;
+`;
+
+const Value = styled(Text)`
+  color: grey;
+`;
