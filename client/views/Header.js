@@ -1,6 +1,7 @@
 import React from "react";
 import { Image, Pressable, Text, View } from "react-native";
 import styled from "styled-components/native";
+import {PrimaryButton} from "./Components/PrimaryButton/PrimaryButton";
 
 export const Header = ({navigation}) => {
   const [info, setInfo] = React.useState([]);
@@ -22,7 +23,7 @@ export const Header = ({navigation}) => {
                 <Text>{info.name}</Text>
             </StyledPressable>
             <StyledPressableLogout onPress={()=> logout()}>
-                <Text>Logout</Text>
+                <PrimaryButton text="Logout"/>
             </StyledPressableLogout>
         </Container>
     );
